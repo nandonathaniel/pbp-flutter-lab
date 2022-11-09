@@ -30,11 +30,8 @@ const dan final sama-sama variable yang bersifat konstan dan tidak bisa diganti 
 Membuat fungsi `_decrementCounter`, tapi ingat hanya bisa dilakukan ketika `_counter > 0`
 
 ### Step 3
-Untuk AJAX GET, karena sudah ada `todolist/json`, kita lakukan fetch untuk mengambil data JSON ketika diperlukan.
-
-### Step 4
 Mengupdate body pada Scaffold untuk memberikan GANJIL/GENAP dan warna.
 
-### Step 5
+### Step 4
 Menambahkan widget `Padding`, yang berisikan spesifikasi padding dan 2 tombol. 2 tombol mencakup widget `FloatingActionBotton`, khusus untuk yang button `-`, tambahkan `Visibility` pada parentnya. Jangan lupa sesuaikan onPressed dan Icon yang dipilih untuk botton tsb."# pbp-flutter-lab" 
 "# pbp-flutter-lab" 
