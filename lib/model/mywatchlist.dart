@@ -1,34 +1,30 @@
 // To parse this JSON data, do
 //
-//     final toDo = toDoFromJson(jsonString);
+//     final myWatchList = myWatchListFromJson(jsonString);
 
 import 'dart:convert';
 
-List<MyWatchList> MyWatchListFromJson(String str) => List<MyWatchList>.from(json.decode(str).map((x) => MyWatchList.fromJson(x)));
+List<MyWatchList> myWatchListFromJson(String str) => List<MyWatchList>.from(json.decode(str).map((x) => MyWatchList.fromJson(x)));
 
-String MyWatchListToJson(List<MyWatchList> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String myWatchListToJson(List<MyWatchList> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class MyWatchList {
     MyWatchList({
-        required this.model,
         required this.pk,
         required this.fields,
     });
 
-    String model;
     int pk;
     Fields fields;
 
     factory MyWatchList.fromJson(Map<String, dynamic> json) => MyWatchList(
-        model: json["model"],
         pk: json["pk"],
-        fields: json["fields"],
+        fields: Fields.fromJson(json["fields"]),
     );
 
     Map<String, dynamic> toJson() => {
-        "model": model,
         "pk": pk,
-        "fields": fields,
+        "fields": fields.toJson(),
     };
 }
 
@@ -41,17 +37,17 @@ class Fields {
         required this.review,
     });
 
-    double rating;
-    String releaseDate;
-    String title;
     bool watched;
+    String title;
+    int rating;
+    DateTime releaseDate;
     String review;
 
     factory Fields.fromJson(Map<String, dynamic> json) => Fields(
         watched: json["watched"],
         title: json["title"],
         rating: json["rating"],
-        releaseDate: json["releaseDate"],
+        releaseDate: DateTime.parse(json["release_date"]),
         review: json["review"],
     );
 
@@ -59,7 +55,7 @@ class Fields {
         "watched": watched,
         "title": title,
         "rating": rating,
-        "releaseDate": releaseDate,
+        "release_date": "${releaseDate.year.toString().padLeft(4, '0')}-${releaseDate.month.toString().padLeft(2, '0')}-${releaseDate.day.toString().padLeft(2, '0')}",
         "review": review,
     };
 }

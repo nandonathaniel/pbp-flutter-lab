@@ -7,7 +7,6 @@ Future<List<MyWatchList>> fetchMyWatchList() async {
     var response = await http.get(
         url,
         headers: {
-            "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
         },
     );

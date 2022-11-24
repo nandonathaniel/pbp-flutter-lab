@@ -3,8 +3,21 @@ import 'package:counter_7/model/mywatchlist.dart';
 import 'package:counter_7/drawer.dart';
 
 class MyWatchlistDetail extends StatefulWidget {
-	const MyWatchlistDetail({super.key});
-	
+	const MyWatchlistDetail({
+    super.key,
+    required this.watched,
+    required this.title,
+    required this.rating,
+    required this.releaseDate,
+    required this.review,
+  });
+
+  final bool watched;
+    final String title;
+    final int rating;
+    final DateTime releaseDate;
+    final String review;
+
 	@override
 	State<MyWatchlistDetail> createState() => _MyWatchlistDetailState();
 }
@@ -12,13 +25,14 @@ class MyWatchlistDetail extends StatefulWidget {
 class _MyWatchlistDetailState extends State<MyWatchlistDetail> {
 	@override
 	Widget build(BuildContext context) {
-		final MyWatchlist watch = ModalRoute.of(context)!.settings.arguments as WatchList;
+
+		// final MyWatchList watch = ModalRoute.of(context)!.settings.arguments as MyWatchList;
 		
 		return Scaffold(
 			appBar: AppBar(
 				title: const Text('Detail'),
 			),
-			drawer: buildDrawer(context),
+			drawer: DrawerWidget(),
 			body: Padding(
 		    	padding: const EdgeInsets.all(20.0),
 		    	child: Column(
@@ -26,7 +40,7 @@ class _MyWatchlistDetailState extends State<MyWatchlistDetail> {
 				    children: [
 				        Center(
 				        	child: Text(
-					            watch.title,
+					            widget.title,
 					            style: const TextStyle(
 					              fontSize: 24.0,
 					              fontWeight: FontWeight.bold,
@@ -46,7 +60,7 @@ class _MyWatchlistDetailState extends State<MyWatchlistDetail> {
 						            ),
 					            ),
 					            Text(
-					            	watch.releaseDate,
+					            	'${widget.releaseDate}',
 					            	style: const TextStyle(
 					            		fontSize: 18.0,
 					            	),
@@ -63,7 +77,7 @@ class _MyWatchlistDetailState extends State<MyWatchlistDetail> {
 					            	),
 					            ),
 					            Text(
-					            	"${watch.rating}/5.0",
+					            	"${widget.rating}/5.0",
 					              	style: const TextStyle(
 					                	fontSize: 18.0,
 					            	),
@@ -80,7 +94,7 @@ class _MyWatchlistDetailState extends State<MyWatchlistDetail> {
 				              		),
 				            	),
 					            Text(
-					              	watch.watched ? "Watched" : "Not Watched",
+					              	widget.watched ? "Watched" : "Not Watched",
 					              	style: const TextStyle(
 					                	fontSize: 18.0,
 					              	),
@@ -102,7 +116,7 @@ class _MyWatchlistDetailState extends State<MyWatchlistDetail> {
 				        	children: [
 				            	Flexible(
 				            		child: Text(
-				                		watch.review,
+				                		widget.review,
 				                		style: const TextStyle(
 				                  			fontSize: 18.0,
 				                		),

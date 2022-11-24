@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:counter_7/drawer.dart';
 import 'package:counter_7/model/mywatchlist.dart';
 import 'package:counter_7/util/fetch_watchlist.dart';
+import 'package:counter_7/mywatchlist-detail.dart';
 
-class MyWatchList extends StatefulWidget {
-	const MyWatchList({super.key});
+
+class MyWatchListPage extends StatefulWidget {
+	const MyWatchListPage({super.key});
 	
 	@override
-	State<MyWatchList> createState() => _MyWatchListState();
+	State<MyWatchListPage> createState() => _MyWatchListPageState();
 }
 
-class _MyWatchListState extends State<MyWatchList> {
+class _MyWatchListPageState extends State<MyWatchListPage> {
 	@override
 	Widget build(BuildContext context) {
 		return Scaffold(
@@ -41,10 +43,15 @@ class _MyWatchListState extends State<MyWatchList> {
                                 itemCount: snapshot.data!.length,
                                 itemBuilder: (_, index) => InkWell(
                                     onTap: () {
-                                        Navigator.pushNamed(
+                                        Navigator.push(
                                             context,
-                                            "/mywatchlist-detail",
-                                            arguments: snapshot.data![index],
+                                            MaterialPageRoute(builder: (context) => MyWatchlistDetail(
+                                              title: snapshot.data![index].fields.title,
+                                              releaseDate: snapshot.data![index].fields.releaseDate,
+                                              rating: snapshot.data![index].fields.rating,
+                                              watched: snapshot.data![index].fields.watched,
+                                              review: snapshot.data![index].fields.review,
+                                              )),
                                         );
                                     },
                                     child: Container(
@@ -53,12 +60,6 @@ class _MyWatchListState extends State<MyWatchList> {
                                         decoration: BoxDecoration(
                                             color: Colors.white,
                                             borderRadius: BorderRadius.circular(15.0),
-                                            border: Border.all(
-                                                color: snapshot.data![index].Fields.watched
-                                                ? Colors.green.shade400
-                                                : Colors.red.shade400,
-                                                width: 2.0,
-                                            ),
                                             boxShadow: [
                                                 BoxShadow(
                                                 color: Colors.grey.withOpacity(0.5),
@@ -73,19 +74,11 @@ class _MyWatchListState extends State<MyWatchList> {
                                             crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
                                                 Text(
-                                                    snapshot.data![index].Fields.title,
+                                                    snapshot.data![index].fields.title,
                                                     style: const TextStyle(
                                                         fontSize: 18.0,
                                                         fontWeight: FontWeight.bold,
                                                     ),
-                                                ),
-                                                Checkbox(
-                                                    value: snapshot.data![index].Fields.watched,
-                                                    onChanged: (bool? newValue) => {
-                                                        setState(
-                                                            () => {snapshot.data![index].Fields.watched = newValue!},
-                                                        )
-                                                    },
                                                 ),
                                             ],
                                         ),

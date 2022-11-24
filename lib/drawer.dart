@@ -45,7 +45,7 @@ class DrawerWidget extends StatelessWidget {
                             // Route menu ke halaman Data
                             Navigator.pushReplacement(
                                 context,
-                                MaterialPageRoute(builder: (context) => const MyWatchList()),
+                                MaterialPageRoute(builder: (context) => const MyWatchListPage()),
                             );
                         },
                     ),

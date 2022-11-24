@@ -1,5 +1,6 @@
 import 'package:counter_7/form.dart';
 import 'package:flutter/material.dart';
+import 'package:counter_7/drawer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -59,33 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
             title: Text(widget.title),
           ),
           // Menambahkan drawer menu
-          drawer: Drawer(
-              child: Column(
-                children: [
-                  // Menambahkan clickable menu
-                  ListTile(
-                    title: const Text('Counter_7'),
-                    onTap: () {
-                      // Route menu ke halaman utama
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => const MyHomePage()),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    title: const Text('Form'),
-                    onTap: () {
-                      // Route menu ke halaman form
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => const MyFormPage()),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
+          drawer: DrawerWidget(),
           body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
